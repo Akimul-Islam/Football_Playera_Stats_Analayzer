@@ -39,8 +39,3 @@ def save_players(filepath, players):
         return False
 
 
-if __name__ == "__main__":
-    base = os.path.dirname(os.path.abspath(__file__))
-    real_path = os.path.join(base, "data", "players.csv")
-    loaded, bad = load_players(real_path)
-    print("Real CSV -> loaded:", len(loaded), "skipped:", bad)

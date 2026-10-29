@@ -84,7 +84,3 @@ def validate_stat(text, field_name):
     return number
 
 
-if __name__ == "__main__":
-    print("Valid name:", validate_name("Leo Marin"))
-    print("Valid jersey:", validate_jersey("7"))
-    print("Valid stat:", validate_stat("2", "goals"))

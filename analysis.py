@@ -73,10 +73,3 @@ def summarize_scores(rows):
     }
 
 
-if __name__ == "__main__":
-    from models import Player
-    sample = Player("ARS-09", "Marco Silvano", "Arsenal", 9, "FWD", 10,
-                    {"goals": 8, "assists": 3, "clean_sheets": 0, "saves": 0,
-                     "tackles": 2, "yellow_cards": 1, "red_cards": 0})
-    print("Projected:", project_stats(sample))
-    print("Worked example score (expected 193.8):", calculate_score(sample))
