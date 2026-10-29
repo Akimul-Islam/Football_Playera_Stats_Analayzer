@@ -24,10 +24,6 @@ A desktop Python application built with **Tkinter**, **NumPy**, and **CSV file h
    ```bash
    python main.py
    ```
-4. *(Optional)* Run the basic automated test script:
-   ```bash
-   python test_basic.py
-   ```
 
 ---
 
@@ -44,7 +40,6 @@ premier_league_player_analyzer/
 |-- analysis.py          (Member 2)  NumPy 38-match projection, weighted score, summary
 |-- gui_matchday.py      (Member 2)  Match Day tab (add match-day stats)
 |-- gui_leaderboard.py   (Member 2)  Leaderboard tab (rank by position)
-|-- test_basic.py        (Member 4)  Automated checks for validation, files, and NumPy math
 |-- README.md            (Member 4)  Project instructions and overview
 |-- TEST_CHECKLIST.md    (Member 3)  21-case manual verification checklist
 |-- data/
