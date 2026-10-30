@@ -130,7 +130,3 @@ class PlayerManager:
     # Return the ranked leaderboard rows for the chosen position
     def get_leaderboard(self, position):
         return analysis.build_leaderboard(self.players, position)
-
-    # Return the summary statistics dictionary for a list of leaderboard rows
-    def get_score_summary(self, rows):
-        return analysis.summarize_scores(rows)

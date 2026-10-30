@@ -60,16 +60,6 @@ def build_leaderboard(players, position):
     return rows
 
 
-# Calculate count, average, highest, and lowest score from leaderboard rows using NumPy
-def summarize_scores(rows):
-    if len(rows) == 0:
-        return {"count": 0, "average": 0.0, "highest": 0.0, "lowest": 0.0}
-    scores = np.array([row["score"] for row in rows], dtype=float)
-    return {
-        "count": len(rows),
-        "average": round(float(np.mean(scores)), 1),
-        "highest": round(float(np.max(scores)), 1),
-        "lowest": round(float(np.min(scores)), 1),
-    }
+
 
 

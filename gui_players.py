@@ -57,9 +57,9 @@ class PlayersTab(ttk.Frame):
 
         btn_frame = ttk.Frame(form_frame)
         btn_frame.grid(row=2, column=0, columnspan=6, sticky="w", pady=(6, 2))
-        ttk.Button(btn_frame, text="Create Player", command=self.on_create).pack(side="left", padx=4)
+        ttk.Button(btn_frame, text="Create", command=self.on_create).pack(side="left", padx=4)
         ttk.Button(btn_frame, text="Clear Form", command=self.clear_form).pack(side="left", padx=4)
-        ttk.Button(btn_frame, text="Delete Selected", command=self.on_delete).pack(side="left", padx=4)
+        ttk.Button(btn_frame, text="Delete", command=self.on_delete).pack(side="left", padx=4)
 
         search_frame = ttk.Frame(self)
         search_frame.pack(fill="x", pady=(0, 8))
@@ -70,7 +70,7 @@ class PlayersTab(ttk.Frame):
             search_frame, textvariable=self.filter_var, values=("All",) + POSITIONS, state="readonly", width=8
         ).pack(side="left", padx=4)
         ttk.Button(search_frame, text="Search", command=self.on_search).pack(side="left", padx=4)
-        ttk.Button(search_frame, text="Show All", command=self.on_show_all).pack(side="left", padx=4)
+        ttk.Button(search_frame, text="Refresh", command=self.on_show_all).pack(side="left", padx=4)
 
     # Build the Treeview table showing player records with a vertical scrollbar
     def build_table(self):

@@ -15,8 +15,6 @@ class LeaderboardTab(ttk.Frame):
         self.on_change = on_change
 
         self.position_var = tk.StringVar(value="FWD")
-        self.weights_var = tk.StringVar()
-        self.summary_var = tk.StringVar()
 
         self.build_ui()
 
@@ -52,12 +50,6 @@ class LeaderboardTab(ttk.Frame):
         self.tree.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
 
-        ttk.Label(self, textvariable=self.weights_var).pack(fill="x", pady=2)
-        ttk.Label(self, textvariable=self.summary_var).pack(fill="x", pady=2)
-        ttk.Label(
-            self,
-            text="Projected to 38 match days. Players need at least 3 appearances to be ranked.",
-        ).pack(fill="x", pady=2)
 
     # Refresh the leaderboard table and labels for the currently chosen position
     def refresh(self):
@@ -82,19 +74,6 @@ class LeaderboardTab(ttk.Frame):
                 ),
             )
 
-        weight_parts = []
-        for field, weight in WEIGHTS[position].items():
-            weight_parts.append(f"{field} {weight}")
-        self.weights_var.set("Weights: " + ", ".join(weight_parts))
-
-        if len(rows) == 0:
-            self.summary_var.set("No ranked players for this position")
-        else:
-            summary = self.manager.get_score_summary(rows)
-            self.summary_var.set(
-                f"Players ranked: {summary['count']} | Average score: {summary['average']} | "
-                f"Highest: {summary['highest']} | Lowest: {summary['lowest']}"
-            )
 
     # Handle the Show button or Combobox change by refreshing the leaderboard
     def on_show(self, event=None):
