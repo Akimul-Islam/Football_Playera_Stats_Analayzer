@@ -31,25 +31,20 @@ A desktop Python application built with **Tkinter**, **NumPy**, and **CSV file h
 
 ```text
 premier_league_player_analyzer/
-|-- main.py              (Member 1)  Starts the program, builds the window and 3 tabs
-|-- models.py            (Member 1)  Constants (tuples, dicts) + Player class
-|-- manager.py           (Member 1)  PlayerManager class
-|-- gui_players.py       (Member 1)  Players tab (create, view, search, delete)
-|-- file_handler.py      (Member 2)  Load and save CSV files
-|-- validation.py        (Member 2)  Input checking functions
-|-- analysis.py          (Member 2)  NumPy 38-match projection, weighted score, summary
-|-- gui_matchday.py      (Member 2)  Match Day tab (add match-day stats)
-|-- gui_leaderboard.py   (Member 2)  Leaderboard tab (rank by position)
-|-- README.md            (Member 4)  Project instructions and overview
-|-- TEST_CHECKLIST.md    (Member 3)  21-case manual verification checklist
+|-- main.py                Starts the program, builds the window and 3 tabs
+|-- models.py              Constants (tuples, dicts) + Player class
+|-- manager.py             PlayerManager class
+|-- gui_players.py         Players tab (create, view, search, delete)
+|-- file_handler.py        Load and save CSV files
+|-- validation.py          Input checking functions
+|-- analysis.py            NumPy 38-match projection, weighted score, summary
+|-- gui_matchday.py        Match Day tab (add match-day stats)
+|-- gui_leaderboard.py     Leaderboard tab (rank by position)
+|-- README.md              Project instructions and overview
+|-- TEST_CHECKLIST.md      21-case manual verification checklist
 |-- data/
-|   |-- players.csv      (Member 3)  20 fictional sample players (5 teams x 4 positions)
-|   |-- test/
-|       |-- players_bad.csv    (Member 3)  CSV with corrupted rows for error-handling demo
-|       |-- players_empty.csv  (Member 3)  Empty CSV file test
-|-- screenshots/         (Member 4)  Folder for demo screenshots
-|-- report/
-    |-- report.md        (Member 5)  Complete 10-section mid-term project report
+|   |-- players.csv        20 fictional sample players (5 teams x 4 positions)
+
 ```
 
 ---
