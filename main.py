@@ -1,5 +1,4 @@
 # main.py - starts the Premier League Player Analyzer application and builds the main window
-
 import os
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -10,15 +9,14 @@ from gui_leaderboard import LeaderboardTab
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
 # Create the manager, build the Tkinter window and 3 tabs, and start the event loop
 def main():
     manager = PlayerManager(os.path.join(BASE_DIR, "data", "players.csv"))
-    message = manager.load_all()
+    manager.load_all()
 
     root = tk.Tk()
     root.title("Premier League Player Analyzer")
-    root.geometry("1050x650")
+    root.geometry("1080x720")
 
     notebook = ttk.Notebook(root)
     notebook.pack(fill="both", expand=True)
