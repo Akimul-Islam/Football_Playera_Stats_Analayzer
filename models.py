@@ -92,6 +92,3 @@ class Player:
 
         return Player(player_id, name, team, jersey, position, appearances, stats)
 
-    # Return a clean text description of the player
-    def __str__(self):
-        return f"{self.player_id} | {self.name} ({self.team}, {self.position})"

@@ -28,7 +28,6 @@ class LeaderboardTab(ttk.Frame):
             top_frame, textvariable=self.position_var, values=POSITIONS, state="readonly", width=10
         )
         pos_combo.pack(side="left", padx=4)
-        pos_combo.bind("<<ComboboxSelected>>", self.on_show)
         ttk.Button(top_frame, text="Show", command=self.on_show).pack(side="left", padx=4)
 
         table_frame = ttk.Frame(self)
@@ -36,7 +35,7 @@ class LeaderboardTab(ttk.Frame):
 
         columns = ("rank", "name", "team", "appearances", "projected", "score")
         headings = ("Rank", "Player", "Team", "Apps", "Projected 38-match stats", "Score")
-        widths = (60, 160, 150, 60, 420, 90)
+        widths = (60, 160, 150, 60, 520, 90)
 
         self.tree = ttk.Treeview(table_frame, columns=columns, show="headings")
         for col, title, width in zip(columns, headings, widths):

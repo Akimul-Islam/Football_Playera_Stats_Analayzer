@@ -22,8 +22,6 @@ def main():
 
     notebook = ttk.Notebook(root)
     notebook.pack(fill="both", expand=True)
-    status_var = tk.StringVar(value=message)
-    ttk.Label(root, textvariable=status_var).pack(fill="x")
 
     tabs = []                                  # list of all tabs
 
@@ -41,9 +39,10 @@ def main():
     # Save all player records immediately when clicking File -> Save
     def save_now():
         if manager.save_all():
-            status_var.set("Saved successfully.")
+            messagebox.showinfo("Saved", "Saved successfully.")
         else:
             messagebox.showerror("Save failed", "Could not save the file.")
+
 
     menu = tk.Menu(root)
     file_menu = tk.Menu(menu, tearoff=0)
