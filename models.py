@@ -1,25 +1,25 @@
-# models.py - constants and the Player class
 
-POSITIONS = ("GK", "DEF", "MID", "FWD")                                    # tuple
+
+POSITIONS = ("GK", "DEF", "MID", "FWD")                                    
 STAT_FIELDS = ("goals", "assists", "clean_sheets", "saves", "tackles",
-               "yellow_cards", "red_cards")                                # tuple
+               "yellow_cards", "red_cards")                                
 PLAYER_FIELDS = ("player_id", "name", "team", "jersey", "position",
-                 "appearances") + STAT_FIELDS                              # tuple
+                 "appearances") + STAT_FIELDS                              
 TOTAL_MATCHDAYS = 38
 MIN_APPEARANCES = 3
 MAX_JERSEY = 99
 
-# team name -> 3-letter code (dictionary). The keys are the allowed teams.
+
 TEAM_CODES = {"Arsenal": "ARS", "Chelsea": "CHE", "Liverpool": "LIV",
               "Manchester City": "MCI", "Manchester United": "MUN",
               "Tottenham Hotspur": "TOT", "Newcastle United": "NEW",
               "Aston Villa": "AVL", "Brighton": "BHA", "West Ham United": "WHU"}
 
-# largest value allowed for ONE match day entry (dictionary)
+
 MAX_PER_MATCHDAY = {"goals": 10, "assists": 10, "clean_sheets": 1, "saves": 20,
                     "tackles": 20, "yellow_cards": 2, "red_cards": 1}
 
-# weights per position (dictionary of dictionaries). A stat not listed = weight 0
+
 WEIGHTS = {
     "FWD": {"goals": 5, "assists": 4, "yellow_cards": -1, "red_cards": -3},
     "MID": {"goals": 4, "assists": 5, "tackles": 2, "yellow_cards": -1, "red_cards": -3},
@@ -30,28 +30,24 @@ WEIGHTS = {
 
 
 class Player:
-    """One player with cumulative season stats."""
 
-    # Create a new Player object with basic info and a dictionary of season stats
     def __init__(self, player_id, name, team, jersey, position, appearances=0, stats=None):
         self.player_id = player_id
         self.name = name
         self.team = team
-        self.jersey = jersey              # int
-        self.position = position          # one of POSITIONS
-        self.appearances = appearances    # int
-        if stats is None:                 # dictionary: stat name -> total
+        self.jersey = jersey              
+        self.position = position          
+        self.appearances = appearances    
+        if stats is None:                 
             stats = {field: 0 for field in STAT_FIELDS}
         self.stats = stats
 
-    # Add one match day's stats to the player's totals and increase appearances by 1
     def add_matchday(self, new_stats):
         """Add one match day: new_stats is a dict {stat: int}. Updates the totals."""
         for field in STAT_FIELDS:
             self.stats[field] += new_stats[field]
         self.appearances += 1
 
-    # Convert the player object into a flat dictionary for saving to CSV
     def to_dict(self):
         """Return a flat dictionary with the keys in PLAYER_FIELDS."""
         data = {"player_id": self.player_id, "name": self.name, "team": self.team,
@@ -60,7 +56,6 @@ class Player:
         data.update(self.stats)
         return data
 
-    # Build a Player object from a CSV row dictionary and check that values are valid
     @staticmethod
     def from_dict(data):
         """Build a Player from a CSV row dictionary.

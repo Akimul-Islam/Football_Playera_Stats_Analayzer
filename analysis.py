@@ -1,21 +1,16 @@
-# analysis.py - NumPy projection, weighted score, leaderboard, and summary calculations
-
 import numpy as np
 from models import STAT_FIELDS, WEIGHTS, MIN_APPEARANCES, TOTAL_MATCHDAYS
 
 
-# Convert a player's season stats into a NumPy float array in the order of STAT_FIELDS
 def get_stat_array(player):
     return np.array([player.stats[field] for field in STAT_FIELDS], dtype=float)
 
 
-# Convert a position's stat weights into a NumPy float array in the order of STAT_FIELDS
 def get_weight_array(position):
     weights = WEIGHTS[position]
     return np.array([weights.get(field, 0) for field in STAT_FIELDS], dtype=float)
 
 
-# Project a player's cumulative stats to a full 38-match season using NumPy
 def project_stats(player):
     if player.appearances == 0:
         return {field: 0.0 for field in STAT_FIELDS}
@@ -23,7 +18,6 @@ def project_stats(player):
     return {field: round(float(value), 1) for field, value in zip(STAT_FIELDS, projected)}
 
 
-# Calculate a player's position-weighted projected season score using np.dot
 def calculate_score(player):
     if player.appearances == 0:
         return 0.0
@@ -32,7 +26,6 @@ def calculate_score(player):
     return round(float(score), 1)
 
 
-# Build the ranked leaderboard list of dictionaries for one position
 def build_leaderboard(players, position):
     rows = []
     for player in players:

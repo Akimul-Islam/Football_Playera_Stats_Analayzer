@@ -1,4 +1,3 @@
-# gui_players.py - Players tab for creating, viewing, searching, and deleting players
 
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -6,9 +5,6 @@ from models import POSITIONS
 
 
 class PlayersTab(ttk.Frame):
-    """GUI tab for creating, searching, viewing, and deleting players."""
-
-    # Set up the Players tab with form variables, form widgets, and the player table
     def __init__(self, parent, manager, on_change):
         super().__init__(parent, padding=10)
         self.manager = manager
@@ -25,7 +21,6 @@ class PlayersTab(ttk.Frame):
         self.build_form()
         self.build_table()
 
-    # Build the Create Player form, action buttons, and search bar
     def build_form(self):
         form_frame = ttk.LabelFrame(self, text="Create Player", padding=8)
         form_frame.pack(fill="x", pady=(0, 8))
@@ -72,7 +67,7 @@ class PlayersTab(ttk.Frame):
         ttk.Button(search_frame, text="Search", command=self.on_search).pack(side="left", padx=4)
         ttk.Button(search_frame, text="Refresh", command=self.on_show_all).pack(side="left", padx=4)
 
-    # Build the Treeview table showing player records with a vertical scrollbar
+
     def build_table(self):
         table_frame = ttk.Frame(self)
         table_frame.pack(fill="both", expand=True)
@@ -92,12 +87,10 @@ class PlayersTab(ttk.Frame):
         self.tree.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
 
-    # Update the read-only Generated ID box whenever team or jersey changes
     def update_id_preview(self, *args):
         preview = self.manager.preview_player_id(self.team_var.get(), self.jersey_var.get())
         self.id_var.set(preview)
 
-    # Clear the table and insert one row for each player in player_list
     def fill_table(self, player_list):
         self.tree.delete(*self.tree.get_children())
         for player in player_list:
@@ -114,11 +107,11 @@ class PlayersTab(ttk.Frame):
                 ),
             )
 
-    # Reload all players from the manager into the table
+
     def refresh(self):
         self.fill_table(self.manager.get_all_players())
 
-    # Validate form inputs and create a new player
+
     def on_create(self):
         try:
             player = self.manager.create_player(
@@ -133,7 +126,6 @@ class PlayersTab(ttk.Frame):
         except ValueError as error:
             messagebox.showerror("Invalid input", str(error))
 
-    # Delete the currently selected player from the table after confirmation
     def on_delete(self):
         selected = self.tree.focus()
         if not selected:
@@ -153,20 +145,19 @@ class PlayersTab(ttk.Frame):
         except ValueError as error:
             messagebox.showerror("Invalid input", str(error))
 
-    # Filter the table using the search text and position dropdown
     def on_search(self):
         results = self.manager.search_players(self.search_var.get(), self.filter_var.get())
         self.fill_table(results)
         if len(results) == 0:
             messagebox.showinfo("Search", "No players found")
 
-    # Reset search filters and display all players
+
     def on_show_all(self):
         self.search_var.set("")
         self.filter_var.set("All")
         self.refresh()
 
-    # Clear all input boxes in the Create Player form
+
     def clear_form(self):
         self.name_var.set("")
         self.team_var.set("")

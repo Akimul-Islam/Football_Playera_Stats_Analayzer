@@ -1,11 +1,11 @@
-# file_handler.py - load and save players to a CSV file
+
 
 import csv
 import os
 from models import Player, PLAYER_FIELDS
 
 
-# Load players from a CSV file and return (list_of_players, skipped_count)
+
 def load_players(filepath):
     players = []
     skipped = 0
@@ -23,7 +23,7 @@ def load_players(filepath):
     return (players, skipped)
 
 
-# Save the list of Player objects to a CSV file and return True if successful
+
 def save_players(filepath, players):
     try:
         folder = os.path.dirname(filepath)

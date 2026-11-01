@@ -1,14 +1,10 @@
-# gui_matchday.py - Match Day tab for recording one match day's stats for a player
-
 import tkinter as tk
 from tkinter import ttk, messagebox
 from models import STAT_FIELDS
 
 
 class MatchDayTab(ttk.Frame):
-    """GUI tab for adding one match day of statistics to a selected player."""
-
-    # Set up the Match Day tab with player selector, stat inputs, and info label
+    
     def __init__(self, parent, manager, on_change):
         super().__init__(parent, padding=10)
         self.manager = manager
@@ -22,7 +18,6 @@ class MatchDayTab(ttk.Frame):
 
         self.build_ui()
 
-    # Build the player dropdown, info label, loop-created stat entries, and buttons
     def build_ui(self):
         top_frame = ttk.LabelFrame(self, text="Select Player", padding=8)
         top_frame.pack(fill="x", pady=(0, 10))
@@ -53,7 +48,7 @@ class MatchDayTab(ttk.Frame):
         ttk.Button(btn_frame, text="Add Match Day Stats", command=self.on_add).pack(side="left", padx=4)
         ttk.Button(btn_frame, text="Reset Stats to 0", command=self.clear_stats).pack(side="left", padx=4)
 
-    # Update the player dropdown values and keep the info label accurate
+
     def refresh(self):
         labels = self.manager.get_player_labels()
         self.player_combo["values"] = labels
@@ -64,7 +59,7 @@ class MatchDayTab(ttk.Frame):
         else:
             self.on_player_selected()
 
-    # Show the selected player's team, position, and current appearances
+
     def on_player_selected(self, event=None):
         selected_text = self.player_var.get()
         if not selected_text:
@@ -76,7 +71,7 @@ class MatchDayTab(ttk.Frame):
                 f"{player.name} | {player.team} | {player.position} | Appearances: {player.appearances}"
             )
 
-    # Validate the entered stats and add one match day to the selected player
+
     def on_add(self):
         selected_text = self.player_var.get()
         if not selected_text:
@@ -93,7 +88,6 @@ class MatchDayTab(ttk.Frame):
         except ValueError as error:
             messagebox.showerror("Invalid input", str(error))
 
-    # Reset every stat input box back to "0"
     def clear_stats(self):
         for field in STAT_FIELDS:
             self.stat_vars[field].set("0")

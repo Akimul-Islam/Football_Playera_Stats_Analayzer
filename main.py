@@ -1,4 +1,3 @@
-# main.py - starts the Premier League Player Analyzer application and builds the main window
 import os
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -9,7 +8,6 @@ from gui_leaderboard import LeaderboardTab
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Create the manager, build the Tkinter window and 3 tabs, and start the event loop
 def main():
     manager = PlayerManager(os.path.join(BASE_DIR, "data", "players.csv"))
     manager.load_all()
@@ -21,9 +19,9 @@ def main():
     notebook = ttk.Notebook(root)
     notebook.pack(fill="both", expand=True)
 
-    tabs = []                                  # list of all tabs
+    tabs = []                                  
 
-    # Refresh all three tabs whenever player data changes
+
     def refresh_all():
         for tab in tabs:
             tab.refresh()
@@ -34,7 +32,6 @@ def main():
     for tab, title in zip(tabs, ("Players", "Match Day", "Leaderboard")):
         notebook.add(tab, text=title)
 
-    # Save all player records immediately when clicking File -> Save
     def save_now():
         if manager.save_all():
             messagebox.showinfo("Saved", "Saved successfully.")

@@ -1,4 +1,4 @@
-# gui_leaderboard.py - Leaderboard tab showing 38-match projections and weighted scores by position
+
 
 import tkinter as tk
 from tkinter import ttk
@@ -6,9 +6,7 @@ from models import POSITIONS, WEIGHTS
 
 
 class LeaderboardTab(ttk.Frame):
-    """GUI tab for viewing position-specific leaderboards and NumPy score summaries."""
 
-    # Set up the Leaderboard tab with position selector, Treeview table, and summary labels
     def __init__(self, parent, manager, on_change):
         super().__init__(parent, padding=10)
         self.manager = manager
@@ -18,7 +16,6 @@ class LeaderboardTab(ttk.Frame):
 
         self.build_ui()
 
-    # Build the top position selector, leaderboard table, and bottom information labels
     def build_ui(self):
         top_frame = ttk.Frame(self)
         top_frame.pack(fill="x", pady=(0, 8))
@@ -50,7 +47,6 @@ class LeaderboardTab(ttk.Frame):
         scrollbar.pack(side="right", fill="y")
 
 
-    # Refresh the leaderboard table and labels for the currently chosen position
     def refresh(self):
         position = self.position_var.get()
         if position not in POSITIONS:
@@ -74,6 +70,6 @@ class LeaderboardTab(ttk.Frame):
             )
 
 
-    # Handle the Show button or Combobox change by refreshing the leaderboard
+
     def on_show(self, event=None):
         self.refresh()
